@@ -3,7 +3,7 @@ import React from 'react'
 export default function Navbar() {
     return (
         <nav className="flex justify-between items-center">
-            <img className="w-40" src={require('../assets/logo_lg.png')} alt="" />
+            <img className="w-40" src={require('../assets/logo_sm.png')} alt="" draggable={false} />
             <div className="space-x-8 flex items-center">
                 <a href="/">
                     <svg width="30" viewBox="0 0 50 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,8 +20,8 @@ export default function Navbar() {
                 <a href="https://twitter.com/FusionLabsNFT/" target={'_blank'} rel="noreferrer">
                     <svg width="30" viewBox="0 0 47 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M14.5255 38.4615C31.9537 38.4615 41.4865 23.6622 41.4865 10.8298C41.4865 10.4086 41.4865 9.99046 41.4588 9.57392C43.313 8.20123 44.9134 6.49685 46.1857 4.54669C44.4584 5.33242 42.6226 5.84773 40.7453 6.07492C42.7219 4.86081 44.2023 2.95334 44.9111 0.702592C43.05 1.83388 41.0153 2.6323 38.893 3.06069C35.3045 -0.849139 29.3026 -1.03857 25.4854 2.63931C23.026 5.01077 21.9799 8.54654 22.7442 11.9191C15.1259 11.5263 8.02711 7.83896 3.21453 1.77307C0.699715 6.21065 1.98599 11.8855 6.14965 14.735C4.64169 14.69 3.16603 14.2739 1.84743 13.5213V13.6446C1.84975 18.2668 5.02965 22.2467 9.44965 23.1627C8.0548 23.5532 6.59073 23.6098 5.1728 23.3282C6.41292 27.2853 9.97153 29.9957 14.0243 30.0738C10.669 32.7766 6.52377 34.2442 2.25618 34.2395C1.50335 34.2371 0.750519 34.1921 0 34.0998C4.33453 36.9493 9.37573 38.4615 14.5255 38.4545"
                             fill="#0D0D0D"
                         />

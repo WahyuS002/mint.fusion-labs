@@ -1,3 +1,5 @@
+import CollectionStatus from './components/CollectionStatus'
+import Crowd from './components/Crowd'
 import Minting from './components/Minting'
 import Navbar from './components/Navbar'
 
@@ -9,15 +11,14 @@ function App() {
             </div>
             <div className="flex justify-center">
                 <div className="max-w-3xl text-center">
-                    <h1 className="text-4xl font-bold uppercase tracking-wider">Mint Is Live</h1>
-                    <h4 className="mt-6 text-xl">0.01 ETH Mint Price</h4>
-                    <h4 className="mt-2 text-xl">Max 50 Per Transaction</h4>
+                    <CollectionStatus />
 
                     <div className="mt-8">
                         <Minting />
                     </div>
                 </div>
             </div>
+            <Crowd />
         </div>
     )
 }
