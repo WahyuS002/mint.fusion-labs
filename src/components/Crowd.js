@@ -230,7 +230,7 @@ export default function Crowd() {
     }, [])
     return (
         <div className="">
-            <canvas className="-mt-72 w-full" id="canvas"></canvas>
+            <canvas className="h-96 w-full" id="canvas"></canvas>
         </div>
     )
 }

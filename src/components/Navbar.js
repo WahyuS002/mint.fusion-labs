@@ -3,8 +3,10 @@ import React from 'react'
 export default function Navbar() {
     return (
         <nav className="flex justify-between items-center">
-            <img className="w-40" src={require('../assets/logo_sm.png')} alt="" draggable={false} />
-            <div className="space-x-8 flex items-center">
+            <div className="mx-auto md:mx-0">
+                <img className="w-40" src={require('../assets/logo_sm.png')} alt="" draggable={false} />
+            </div>
+            <div className="space-x-8 hidden md:flex items-center">
                 <a href="/">
                     <svg width="30" viewBox="0 0 50 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
