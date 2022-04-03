@@ -1,13 +1,13 @@
 {
-    "CONTRACT_ADDRESS": "0x519dd6B0BA5dd2C4B38218b1f2928c9b73A4b05D",
-    "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x519dd6B0BA5dd2C4B38218b1f2928c9b73A4b05D",
+    "CONTRACT_ADDRESS": "0xB2178251A45079BAD7C581CCe4544fbC23C573cB",
+    "SCAN_LINK": "https://rinkeby.etherscan.io/address/0xB2178251A45079BAD7C581CCe4544fbC23C573cB",
     "NETWORK": {
         "NAME": "Rinkeby",
         "SYMBOL": "ETH",
         "ID": 4
     },
-    "NFT_NAME": "Testing Whitelist Dapp",
-    "SYMBOL": "TWD",
+    "NFT_NAME": "Fusion Labs",
+    "SYMBOL": "FL",
     "GAS_LIMIT": 285000,
     "MARKETPLACE": "Opensea",
     "MARKETPLACE_LINK": "https://opensea.io"
