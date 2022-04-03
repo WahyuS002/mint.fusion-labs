@@ -5,7 +5,6 @@ import crowdImg from '../assets/crowd.png'
 export default function Crowd() {
     useEffect(() => {
         console.clear()
-        console.log('lsakdfalskjdflnksd')
 
         const config = {
             src: crowdImg,

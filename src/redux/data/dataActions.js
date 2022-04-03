@@ -37,13 +37,6 @@ export const fetchData = () => {
             let walletOfOwner = await store.getState().blockchain.smartContract.methods.walletOfOwner(currentWallet).call()
             let currentWalletSupply = walletOfOwner.length
 
-            // let OGCanMint = await store.getState().blockchain.smartContract.methods.OGCanMint().call()
-
-            // OG Can Mint
-            // if (OGCanMint === true) {
-            //     cost = 0
-            // }
-
             dispatch(
                 fetchDataSuccess({
                     totalSupply,

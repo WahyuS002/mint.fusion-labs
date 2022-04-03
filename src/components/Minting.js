@@ -7,7 +7,7 @@ import { fetchData } from '../redux/data/dataActions'
 
 import { toast } from 'react-toastify'
 
-import { getProofForAddress } from '../lib/Whitelist'
+import { getProofForAddress, isWhitelist } from '../lib/Whitelist'
 
 export default function Minting() {
     const dispatch = useDispatch()
@@ -66,28 +66,38 @@ export default function Minting() {
                 toast.warning('You have exceeded the max limit of minting.')
             } else {
                 if (data.isWhitelistMintEnabled) {
-                    // alert('whitelist')
                     return whitelistMintTokens(gasLimit, totalCostWei)
-                    // const found_whitelist_address = whitelistAddresses.find((element) => element.toLowerCase() === blockchain.account.toLowerCase())
-                    // if (found_whitelist_address) {
-                    //     return whitelistMintTokens(gasLimit, totalCostWei)
-                    // } else {
-                    //     toast.error('This address is not whitelisted')
-                    // }
                 } else {
-                    mintTokens(gasLimit, totalCostWei)
+                    return mintTokens(gasLimit, totalCostWei)
                 }
             }
         }
     }
 
     const whitelistMintTokens = (gasLimit, totalCostWei) => {
-        return blockchain.smartContract.methods.whitelistMint(mintAmount.x, getProofForAddress(blockchain.account)).send({
-            gasLimit: gasLimit,
-            to: CONFIG.CONTRACT_ADDRESS,
-            from: blockchain.account,
-            value: totalCostWei,
-        })
+        if (!isWhitelist(blockchain.account)) {
+            return toast.error('This address is not whitelisted!')
+        } else {
+            toast.info(`Minting your ${CONFIG.NFT_NAME}...`)
+            setClaimingNft(true)
+            return blockchain.smartContract.methods
+                .whitelistMint(mintAmount.x, getProofForAddress(blockchain.account))
+                .send({
+                    gasLimit: gasLimit,
+                    to: CONFIG.CONTRACT_ADDRESS,
+                    from: blockchain.account,
+                    value: totalCostWei,
+                })
+                .once('error', () => {
+                    toast.error('Sorry, something went wrong please try again later.')
+                    setClaimingNft(false)
+                })
+                .then(() => {
+                    toast.success(`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`)
+                    setClaimingNft(false)
+                    dispatch(fetchData(blockchain.account))
+                })
+        }
     }
 
     const mintTokens = (gasLimit, totalCostWei) => {

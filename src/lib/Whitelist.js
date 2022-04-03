@@ -10,27 +10,16 @@ export function getProofForAddress(address) {
     return merkleTree.getHexProof(keccak256(address))
 }
 
-// export default function Whitelist() {
-//     const [merkleTree, setMerkleTree] = useState()
+export function isWhitelist(address) {
+    // get merkle tree
+    const leafNodes = whitelistAddresses.map((addr) => keccak256(addr))
+    const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
+    const rootHash = '0x' + merkleTree.getRoot().toString('hex')
 
-//     const getMerkleTree = () =>
-//     {
-//         if (merkleTree === undefined) {
-//             const leafNodes = whitelistAddresses.map(addr => keccak256(addr));
+    const claimingAddress = keccak256(address)
+    const getProofForAddress = merkleTree.getHexProof(claimingAddress)
 
-//             merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
-//         }
+    const isWhitelist = merkleTree.verify(getProofForAddress, claimingAddress, rootHash)
 
-//         return merkleTree;
-//     }
-
-//     const getProofForAddress = (address) =>
-//     {
-//         return getMerkleTree().getHexProof(keccak256(address));
-//     }
-
-//     const getRawProofForAddress = (address) =>
-//     {
-//         return getProofForAddress(address).toString().replaceAll('\'', '').replaceAll(' ', '');
-//     }
-// }
+    return isWhitelist
+}
