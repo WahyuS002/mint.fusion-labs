@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-input-slider'
 
+import MintedModal from './MintedModal'
+import useModal from '../hooks/useModal'
+import { AnimatePresence } from 'framer-motion'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { connect } from '../redux/blockchain/blockchainActions'
 import { fetchData } from '../redux/data/dataActions'
@@ -9,7 +13,11 @@ import { toast } from 'react-toastify'
 
 import { getProofForAddress, isWhitelist } from '../lib/Whitelist'
 
+import HashLoader from 'react-spinners/HashLoader'
+
 export default function Minting() {
+    const { mintedModalOpen, closeMintedModal, openMintedModal } = useModal()
+
     const dispatch = useDispatch()
     const blockchain = useSelector((state) => state.blockchain)
     const data = useSelector((state) => state.data)
@@ -60,7 +68,7 @@ export default function Minting() {
             toast.info('Minting will open soon.')
         } else {
             console.log('Current Wallet Supply : ', data.currentWalletSupply)
-            if (data.currentWalletSupply + mintAmount.x > data.maxMintAmountPerTx) {
+            if (data.currentWalletSupply + mintAmount.x > data.maxMintAmountPerAddress) {
                 toast.warning('You have exceeded the max limit of minting.')
             } else if (parseInt(mintAmount.x) + parseInt(data.totalSupply) > data.maxSupply) {
                 toast.warning('You have exceeded the max limit of minting.')
@@ -96,6 +104,7 @@ export default function Minting() {
                     toast.success(`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`)
                     setClaimingNft(false)
                     dispatch(fetchData(blockchain.account))
+                    openMintedModal()
                 })
         }
     }
@@ -121,6 +130,7 @@ export default function Minting() {
                 toast.success(`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`)
                 setClaimingNft(false)
                 dispatch(fetchData(blockchain.account))
+                openMintedModal()
             })
     }
 
@@ -134,6 +144,20 @@ export default function Minting() {
 
     return (
         <>
+            <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+                {mintedModalOpen && <MintedModal handleClose={closeMintedModal} />}
+            </AnimatePresence>
+
+            {claimingNft ? (
+                <div className="flex h-full bg-black/90 backdrop-blur-3xl absolute inset-0 w-full z-10">
+                    <div className="flex w-full h-screen">
+                        <div className="m-auto text-white">
+                            <HashLoader color="#82A4A3" loading={true} size={50} />
+                            <h4 className="text-xl mt-12">Minting in Progress...</h4>
+                        </div>
+                    </div>
+                </div>
+            ) : null}
             <div>
                 <Slider
                     axis="x"
@@ -152,7 +176,6 @@ export default function Minting() {
                     disabled={!data.loading && blockchain.smartContract !== null ? false : true}
                 />
             </div>
-
             <div className="mt-4">
                 {!data.loading && blockchain.smartContract !== null ? (
                     <button

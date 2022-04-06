@@ -29,7 +29,7 @@ export const fetchData = () => {
             let totalSupply = await store.getState().blockchain.smartContract.methods.totalSupply().call()
             let cost = await store.getState().blockchain.smartContract.methods.cost().call()
             let paused = await store.getState().blockchain.smartContract.methods.paused().call()
-            let maxMintAmountPerTx = await store.getState().blockchain.smartContract.methods.maxMintAmountPerTx().call()
+            let maxMintAmountPerAddress = await store.getState().blockchain.smartContract.methods.maxMintAmountPerAddress().call()
             let maxSupply = await store.getState().blockchain.smartContract.methods.maxSupply().call()
             let isWhitelistMintEnabled = await store.getState().blockchain.smartContract.methods.whitelistMintEnabled().call()
 
@@ -42,7 +42,7 @@ export const fetchData = () => {
                     totalSupply,
                     cost,
                     paused,
-                    maxMintAmountPerTx,
+                    maxMintAmountPerAddress,
                     isWhitelistMintEnabled,
                     currentWalletSupply,
                     maxSupply,

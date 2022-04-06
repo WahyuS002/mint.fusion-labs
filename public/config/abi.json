@@ -1,11 +1,9 @@
 [
     {
         "inputs": [
-            { "internalType": "string", "name": "_tokenName", "type": "string" },
-            { "internalType": "string", "name": "_tokenSymbol", "type": "string" },
             { "internalType": "uint256", "name": "_cost", "type": "uint256" },
             { "internalType": "uint256", "name": "_maxSupply", "type": "uint256" },
-            { "internalType": "uint256", "name": "_maxMintAmountPerTx", "type": "uint256" },
+            { "internalType": "uint256", "name": "_maxMintAmountPerAddress", "type": "uint256" },
             { "internalType": "string", "name": "_hiddenMetadataUri", "type": "string" }
         ],
         "stateMutability": "nonpayable",
@@ -98,7 +96,7 @@
         "stateMutability": "view",
         "type": "function"
     },
-    { "inputs": [], "name": "maxMintAmountPerTx", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
+    { "inputs": [], "name": "maxMintAmountPerAddress", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
     { "inputs": [], "name": "maxSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
     { "inputs": [], "name": "merkleRoot", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "stateMutability": "view", "type": "function" },
     { "inputs": [{ "internalType": "uint256", "name": "_mintAmount", "type": "uint256" }], "name": "mint", "outputs": [], "stateMutability": "payable", "type": "function" },
@@ -160,12 +158,13 @@
     { "inputs": [{ "internalType": "uint256", "name": "_cost", "type": "uint256" }], "name": "setCost", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
     { "inputs": [{ "internalType": "string", "name": "_hiddenMetadataUri", "type": "string" }], "name": "setHiddenMetadataUri", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
     {
-        "inputs": [{ "internalType": "uint256", "name": "_maxMintAmountPerTx", "type": "uint256" }],
-        "name": "setMaxMintAmountPerTx",
+        "inputs": [{ "internalType": "uint256", "name": "_maxMintAmountPerAddress", "type": "uint256" }],
+        "name": "setMaxMintAmountPerAddress",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
     },
+    { "inputs": [{ "internalType": "uint256", "name": "_maxSupply", "type": "uint256" }], "name": "setMaxSupply", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
     { "inputs": [{ "internalType": "bytes32", "name": "_merkleRoot", "type": "bytes32" }], "name": "setMerkleRoot", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
     { "inputs": [{ "internalType": "bool", "name": "_state", "type": "bool" }], "name": "setPaused", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
     { "inputs": [{ "internalType": "bool", "name": "_state", "type": "bool" }], "name": "setRevealed", "outputs": [], "stateMutability": "nonpayable", "type": "function" },

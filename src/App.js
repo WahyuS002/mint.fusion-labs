@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
     return (
-        <>
+        <div className="relative">
             <ToastContainer />
             <div className="min-h-screen bg-granny font-rubik">
                 <div className="p-9">
@@ -25,7 +25,7 @@ function App() {
                 </div>
                 <Crowd />
             </div>
-        </>
+        </div>
     )
 }
 
